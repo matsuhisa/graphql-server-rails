@@ -79,6 +79,10 @@ GEM
     ffi (1.15.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.12.8)
     haml (5.2.1)
       temple (>= 0.8.0)
       tilt
@@ -220,6 +224,8 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  graphiql-rails
+  graphql
   haml-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
