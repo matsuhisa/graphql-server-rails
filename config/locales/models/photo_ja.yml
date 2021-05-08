@@ -1,0 +1,6 @@
+ja:
+  activerecord:
+    attributes:
+      photo:
+        title: 題名
+        image_url: 画像のURL
