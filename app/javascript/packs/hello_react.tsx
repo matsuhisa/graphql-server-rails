@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import { csrfToken } from '@rails/ujs'
 import { Photos } from './Photos'
+import { NewPhoto } from './NewPhoto'
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 import { ApolloProvider } from '@apollo/client/react'
 
@@ -21,6 +22,8 @@ const client = new ApolloClient({
 document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <ApolloProvider client={client}>
+      <NewPhoto />
+      <br />
       <Photos />
     </ApolloProvider>,
     document.body.appendChild(document.createElement("div")),
