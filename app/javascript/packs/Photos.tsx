@@ -1,16 +1,6 @@
 import React from 'react'
-import { useQuery, gql } from '@apollo/client'
-
-const PHOTOS_QUERY = gql`
-  query allPhotos {
-    photos {
-      id
-      imageUrl
-      title
-      description
-    }
-  }
-`
+import { useQuery } from '@apollo/client'
+import { PHOTOS_QUERY } from './Gql'
 
 export const Photos: React.VFC = () => {
   const { loading, error, data } = useQuery(PHOTOS_QUERY)
