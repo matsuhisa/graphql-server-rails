@@ -7,12 +7,9 @@ export const NewPhoto: React.VFC = () => {
     refetchQueries: [{query: PHOTOS_QUERY}]
   })
 
-  console.table(result.loading)
-  console.table(result.data)
-
   return (
     <button onClick={() => {
-      addPhoto({ variables: { input: { title: '題字', imageUrl: 'https://unsplash.it/680/450?random', description: "説明文" } } })
+      addPhoto({ variables: { input: { title: '題字ですけれどなにか？', imageUrl: 'https://unsplash.it/680/450?random', description: "説明文" } } })
     }}>
       New Photo
     </button>
