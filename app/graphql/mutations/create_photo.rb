@@ -20,7 +20,7 @@ module Mutations
     private
       def build_errors(photo)
         photo.errors.map do |attr, message|
-          message = photo[attr] + ' ' + message
+          message = photo.errors.full_messages_for(attr.to_sym).join(',')
           context.add_error(GraphQL::ExecutionError.new(message, extensions: { code: 'PHOTO_INPUT_ERROR', attribute: attr }))
         end
       end
