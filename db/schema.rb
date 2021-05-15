@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_155102) do
+ActiveRecord::Schema.define(version: 2021_05_15_014509) do
+
+  create_table "google_credentials", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "google_uid", null: false
+    t.string "email", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_google_credentials_on_user_id", unique: true
+  end
 
   create_table "photos", force: :cascade do |t|
     t.string "title"
     t.string "image_url"
     t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "authenticated_at"
+    t.string "nickname"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
