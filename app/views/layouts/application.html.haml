@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title GraphqlServerRails
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    - if current_user
+      = current_user.google_credential.email
+      = link_to 'sing out', signout_path
+    - else
+      ログインしていない
+      = link_to "Sign in with Google", "/auth/google_oauth2", method: :post
+    = yield
