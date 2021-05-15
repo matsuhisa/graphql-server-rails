@@ -31,6 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'haml-rails'
 gem 'graphql'
 
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 
