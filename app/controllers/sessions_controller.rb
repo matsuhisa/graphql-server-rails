@@ -6,6 +6,10 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
+    logger.debug('-----------')
+    logger.debug(auth_hash)
+    logger.debug('-----------')
+
     user = GoogleCredential.authenticate(
       google_uid: auth_hash['uid'],
       email: auth_hash['info']['email']

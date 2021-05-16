@@ -14,5 +14,10 @@ module Types
     def photo(id:)
       Photo.find(id)
     end
+
+    field :me, Types::UserType, null: false
+    def me
+      binding.pry
+    end
   end
 end
