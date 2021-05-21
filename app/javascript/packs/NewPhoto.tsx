@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { NEW_PHOTO, PHOTOS_QUERY } from './Gql'
+import { InputText } from './atom/InputText'
 
 export const NewPhoto: React.VFC = () => {
   const [ values, setValues ] = useState({
@@ -8,14 +9,31 @@ export const NewPhoto: React.VFC = () => {
     imageUrl: 'https://unsplash.it/680/450?random'
   })
 
-  const [ addPhoto, result ] = useMutation(NEW_PHOTO, {
+  const [ addPhoto, { loading, error } ] = useMutation(NEW_PHOTO, {
     refetchQueries: [{query: PHOTOS_QUERY}]
   })
 
-  if(result.error) {
-    console.table(result.error.graphQLErrors[0].message)
-    console.table(result.error.graphQLErrors[0].extensions.attribute)
+  if(loading) {
+    console.table(loading)
+    return (
+      <div>Loading...</div>
+    )
   }
+
+  let errors = {}
+  // if(error) {
+  //   console.table(error.graphQLErrors)
+  //   console.table(error.graphQLErrors.map( e => e.extensions ))
+  //   errors = error.graphQLErrors.map( e => {
+  //     if(e.extensions) {
+
+  //       {
+  //         e.extensions.attribute
+  //       }
+
+  //     }
+  //   })
+  // }
 
 
   const submitHandler = (event) => {
@@ -26,19 +44,29 @@ export const NewPhoto: React.VFC = () => {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    console.table(values) // <= ここと
+    // console.table(values) // <= ここと
     setValues({...values, [name]: value})
-    console.table(values) // <= ここは同じ値
+    // console.table(values) // <= ここは同じ値
+  }
+
+  const test = (event) => {
+    console.log('test')
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
+    setValues({...values, [name]: value})
+    console.table(values)
   }
 
   return (
     <>
-      <label>
+      <InputText name={'title'} label={'題字'} default={'デフォルト'} onChange={test} errorMessages={['エラーだよ', 'エラーですよ']} />
+      {/* <label>
         <span>
           題字
         </span>
         <input type={'text'} name={'title'} defaultValue={values.title} onChange={(event) => submitInputHandler(event)} />
-      </label>
+      </label> */}
       <label>
         <span>
           URL
