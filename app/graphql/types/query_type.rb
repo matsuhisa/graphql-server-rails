@@ -17,7 +17,7 @@ module Types
 
     field :me, Types::UserType, null: false
     def me
-      binding.pry
+      User.find(context[:current_user].id)
     end
   end
 end
