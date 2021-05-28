@@ -7,7 +7,7 @@ type MessageProps = {
 export const ErrorMessageList: React.VFC<MessageProps> = (data) => {
   const messageList = data.messages.map((message) => {
     return (
-      <li>{message}</li>
+      <li key={message}>{message}</li>
     )
   })
 

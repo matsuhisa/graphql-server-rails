@@ -1,5 +1,5 @@
 import React from 'react'
-import { ErrorMessageList } from './ErrorMessageList'
+import { ErrorMessageList } from '../atom/ErrorMessageList'
 
 type InputProps = {
   name: string;

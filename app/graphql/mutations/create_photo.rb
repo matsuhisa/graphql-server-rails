@@ -20,8 +20,8 @@ module Mutations
     private
       def build_errors(photo)
         photo.errors.keys.map do |attr|
-          messages = photo.errors.full_messages_for(attr.to_sym)
-          context.add_error(GraphQL::ExecutionError.new(messages, extensions: { code: 'PHOTO_INPUT_ERROR', attribute: attr }))
+          message = photo.errors.full_messages_for(attr.to_sym).to_a.join(",")
+          context.add_error(GraphQL::ExecutionError.new(message, extensions: { code: 'PHOTO_INPUT_ERROR', attribute: attr.to_s.camelize(:lower) }))
         end
       end
   end
