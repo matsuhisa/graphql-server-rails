@@ -7,9 +7,15 @@ module Mutations
     argument :title, String, required: true
     argument :image_url, String, required: true
     argument :description, String, required: false
+    argument :category, Integer, required: false
 
     def resolve(**args)
-      photo = Photo.create(title: args[:title], image_url: args[:image_url], description: args[:description])
+      photo = Photo.create(
+                            title: args[:title], 
+                            image_url: args[:image_url], 
+                            description: args[:description],
+                            category: args[:category],
+                          )
       {
         post: photo,
         result: photo.valid?,
