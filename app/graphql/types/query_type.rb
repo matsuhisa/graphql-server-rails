@@ -15,6 +15,13 @@ module Types
       Photo.find(id)
     end
 
+    field :photos_category, [Types::PhotoType], null: false do
+      argument :category, Types::PhotoCategoryEnum, required: false
+    end
+    def photos_category(category:)
+      Photo.where(category: category)
+    end
+
     field :me, Types::UserType, null: false
     def me
       User.find(context[:current_user].id)
