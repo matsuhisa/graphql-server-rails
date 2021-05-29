@@ -7,7 +7,7 @@ module Mutations
     argument :title, String, required: true
     argument :image_url, String, required: true
     argument :description, String, required: false
-    argument :category, Integer, required: false
+    argument :category, Types::PhotoCategoryEnum, required: false
 
     def resolve(**args)
       photo = Photo.create(
