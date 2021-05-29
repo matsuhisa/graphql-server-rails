@@ -14,9 +14,15 @@ export const NewPhoto: React.VFC = () => {
     imageUrl: [],
   })
 
+  const [ errorFlag, setErrorFlag ] = useState(false)
+
   const [ addPhoto, { loading, error } ] = useMutation(NEW_PHOTO, {
       refetchQueries: [{query: PHOTOS_QUERY}],
+      onCompleted: () => {
+        setErrorFlag(false)
+      },
       onError: (error) => {
+        // Rails の validations によるエラー
         error.graphQLErrors.forEach(e => {
           if(e.extensions?.attribute) {
             console.table(e.message.split(','))
@@ -25,6 +31,9 @@ export const NewPhoto: React.VFC = () => {
             setErrors({ ...errors, [e.extensions.attribute]: e.message.split(',')})
           }
         })
+        if(error.graphQLErrors.length > 0) {
+          setErrorFlag(true)
+        }
       }
     }
   )
@@ -50,8 +59,16 @@ export const NewPhoto: React.VFC = () => {
 
   return (
     <>
+      {errorFlag && (
+        <p>エラーが発生しました</p>
+      )}
       <InputText name={'title'} label={'題字'} default={values.title} onChange={submitInputHandler} errorMessages={errors.title} />
       <InputText name={'imageUrl'} label={'URL'} default={values.imageUrl} onChange={submitInputHandler} errorMessages={errors.imageUrl} />
+      <select name={'category'} onChange={(event) => submitInputHandler(event)}>
+        <option>カテゴリを選択</option>
+        <option value={'selfie'}>セルフィー</option>
+        <option value={'hoge'}>hoge</option>
+      </select>
       <label>
         <span>
           説明

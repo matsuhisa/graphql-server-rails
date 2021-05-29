@@ -15,6 +15,7 @@ export const Photos: React.VFC = () => {
         <div key={photo.id}>
           <h2>{photo.title}</h2>
           <p>{photo.description}</p>
+          <p>{photo.category}</p>
           <img src={photo.imageUrl} alt={""} title={photo.title} width={100} />
         </div>
       )}

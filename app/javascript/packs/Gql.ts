@@ -6,6 +6,7 @@ query allPhotos {
     id
     imageUrl
     title
+    category
     description
   }
 }
@@ -18,6 +19,7 @@ mutation createPhoto($input: CreatePhotoInput!){
       title
       imageUrl
       description
+      category
     }
     result
     errors
