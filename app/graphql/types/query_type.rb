@@ -22,6 +22,11 @@ module Types
       Photo.where(category: category)
     end
 
+    field :tags, [Types::TagType], null: false
+    def tags
+      Tag.all
+    end
+
     field :me, Types::UserType, null: false
     def me
       User.find(context[:current_user].id)
