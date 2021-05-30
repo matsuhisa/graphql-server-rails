@@ -8,14 +8,19 @@ module Mutations
     argument :image_url, String, required: true
     argument :description, String, required: false
     argument :category, Types::PhotoCategoryEnum, required: false
+    argument :tag_ids, [Int], required: false
 
     def resolve(**args)
-      photo = Photo.create(
-                            title: args[:title], 
-                            image_url: args[:image_url], 
-                            description: args[:description],
-                            category: args[:category],
-                          )
+
+      photo = Photo.new(
+                title: args[:title], 
+                image_url: args[:image_url], 
+                description: args[:description],
+                category: args[:category],
+              )
+      tags = Tag.where(id: args[:tag_ids])
+      photo.tags << tags
+      photo.save
       {
         post: photo,
         result: photo.valid?,
