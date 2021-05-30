@@ -3,7 +3,7 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :photos, [Types::PhotoType], null: false
+    field :photos, [Types::PhotoType], null: false, description: '写真を全て取得する'
     def photos
       Photo.all
     end

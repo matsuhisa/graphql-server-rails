@@ -7,5 +7,6 @@ module Types
     field :category, Types::PhotoCategoryEnum, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :tags, [Types::TagType], null: true
   end
 end
