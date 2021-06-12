@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ReactDOM.render(
     <ApolloProvider client={client}>
       <NewPhoto />
+      <hr />
       <br />
       <Photos />
     </ApolloProvider>,
