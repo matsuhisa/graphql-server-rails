@@ -50,11 +50,18 @@ export const NewPhoto: React.VFC = () => {
 
   const submitInputHandler = (event) => {
     const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-    // console.table(values) // <= ここと
-    setValues({...values, [name]: value})
-    // console.table(values) // <= ここは同じ値
+    if(target.type !== 'checkbox') {
+      // const value = target.type === 'checkbox' ? target.checked : target.value
+      const value = target.value
+      const name = target.name
+      console.table(values) // <= ここと
+      setValues({...values, [name]: value})
+      // console.table(values) // <= ここは同じ値
+    }else{
+      const value = target.value
+      const name = target.name
+      setValues({...values, [name]: [Number(value)]})
+    }
   }
 
   return (
@@ -69,6 +76,12 @@ export const NewPhoto: React.VFC = () => {
         <option value={'selfie'}>セルフィー</option>
         <option value={'hoge'}>hoge</option>
       </select>
+      <label>
+        <input type={'checkbox'} name={"tagIds"} value={1} onChange={(event) => submitInputHandler(event)} /> #タグ1
+      </label>
+      <label>
+        <input type={'checkbox'} name={"tagIds"} value={3} onChange={(event) => submitInputHandler(event)} /> #タグ3
+      </label>
       <label>
         <span>
           説明

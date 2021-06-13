@@ -17,6 +17,11 @@ export const Photos: React.VFC = () => {
           <p>{photo.description}</p>
           <p>{photo.category}</p>
           <img src={photo.imageUrl} alt={""} title={photo.title} width={100} />
+          {
+            photo.tags.map((tag) => 
+              <p key={`${photo.id}-${tag.id}`}>{tag.label}</p>
+            )
+          }
         </div>
       )}
     </>

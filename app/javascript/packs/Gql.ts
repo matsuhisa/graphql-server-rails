@@ -8,6 +8,10 @@ query allPhotos {
     title
     category
     description
+    tags {
+      id
+      label
+    }
   }
 }
 `
@@ -20,6 +24,7 @@ mutation createPhoto($input: CreatePhotoInput!){
       imageUrl
       description
       category
+      tagIds
     }
     result
     errors
