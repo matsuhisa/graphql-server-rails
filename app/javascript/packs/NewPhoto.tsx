@@ -6,7 +6,8 @@ import { InputText } from './molecules/InputText'
 export const NewPhoto: React.VFC = () => {
   const [ values, setValues ] = useState({
     title: '題名です',
-    imageUrl: 'https://unsplash.it/680/450?random'
+    imageUrl: 'https://unsplash.it/680/450?random',
+    tagIds: [],
   })
 
   const [ errors, setErrors ] = useState({
@@ -60,7 +61,12 @@ export const NewPhoto: React.VFC = () => {
     }else{
       const value = target.value
       const name = target.name
-      setValues({...values, [name]: [Number(value)]})
+      console.table(values)
+      if (name in values) {
+        setValues({...values, [name]: values[name].concat(Number(value))})
+      } else {
+        setValues({...values, [name]: [Number(value)]})
+      }
     }
   }
 
