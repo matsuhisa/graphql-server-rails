@@ -7,7 +7,7 @@ export const NewPhoto: React.VFC = () => {
   const [ values, setValues ] = useState({
     title: '題名です',
     imageUrl: 'https://unsplash.it/680/450?random',
-    tagIds: [],
+    tagIds: Array(),
   })
 
   const [ errors, setErrors ] = useState({
@@ -46,6 +46,7 @@ export const NewPhoto: React.VFC = () => {
   }
 
   const submitHandler = (event) => {
+    console.table(values)
     addPhoto({ variables: { input: values }})
   }
 
@@ -63,6 +64,7 @@ export const NewPhoto: React.VFC = () => {
       const name = target.name
       console.table(values)
       if (name in values) {
+        // values[name].filter( (e, i, self) => self.indexOf(e) === i )
         setValues({...values, [name]: values[name].concat(Number(value))})
       } else {
         setValues({...values, [name]: [Number(value)]})
