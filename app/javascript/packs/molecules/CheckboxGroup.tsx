@@ -1,14 +1,12 @@
 import React from 'react'
 
 type GropuProps = {
-  name: string;
   children: React.ReactElement;
 }
 
-export const CheckboxGroup: React.VFC<GropuProps> = ({name, children}) => {
+export const CheckboxGroup: React.VFC<GropuProps> = ({children}) => {
   return (
     <>
-      <p>{name}</p>
       {children}
     </>
   )

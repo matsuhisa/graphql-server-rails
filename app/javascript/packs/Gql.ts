@@ -1,5 +1,14 @@
 import { gql } from '@apollo/client'
 
+export const All_TAGS = gql`
+query allTags {
+  tags {
+    id
+    label
+  }
+}
+`
+
 export const PHOTOS_QUERY = gql`
 query allPhotos {
   photos {

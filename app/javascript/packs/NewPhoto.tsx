@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { NEW_PHOTO, PHOTOS_QUERY } from './Gql'
 import { InputText } from './molecules/InputText'
-import { CheckboxGroup } from './molecules/CheckboxGroup'
+import { NewPhotoCheckboxGroup } from './molecules/NewPhotoCheckboxGroup'
 
 export const NewPhoto: React.VFC = () => {
   const [ values, setValues ] = useState({
@@ -85,9 +85,7 @@ export const NewPhoto: React.VFC = () => {
         <option value={'selfie'}>セルフィー</option>
         <option value={'hoge'}>hoge</option>
       </select>
-      <CheckboxGroup name={"tagIds"}>
-        <p>あいうえお</p>
-      </CheckboxGroup>
+      <NewPhotoCheckboxGroup />
       {/* <label>
         <input type={'checkbox'} name={"tagIds"} value={1} onChange={(event) => submitInputHandler(event)} /> #タグ1
       </label>
